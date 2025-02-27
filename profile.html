@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            background-image:linear-gradient(to right, rgb(68, 132, 141), rgb(181, 195, 195));
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(10px, 3vw, 20px);
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .profile-container {
+            background-color: white;
+            opacity: 0.9;
+            width: min(95%, 600px);
+            margin: auto;
+            padding: clamp(15px, 4vw, 30px);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-bottom: clamp(15px, 3vw, 20px);
+            font-size: clamp(20px, 4vw, 24px);
+            color: #007bff;
+        }
+
+        .profile-info {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: clamp(10px, 2vw, 15px);
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        @media screen and (max-width: 480px) {
+            .profile-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-info label {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .profile-info input[type="file"] {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .profile-info img {
+            width: clamp(120px, 30vw, 150px);
+            height: clamp(120px, 30vw, 150px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #007bff;
+            grid-column: 1 / -1;
+            margin: 0 auto 20px;
+        }
+
+        .profile-info label {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #555;
+            font-size: clamp(14px, 2.5vw, 16px);
+            white-space: nowrap;
+            min-width: max-content;
+            padding-right: 10px;
+        }
+
+        .profile-info input, .profile-info textarea {
+            width: 100%;
+            padding: clamp(8px, 2vw, 12px);
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fafafa;
+            font-size: clamp(12px, 2.5vw, 14px);
+            color: #333;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .profile-info textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .profile-info input:focus, .profile-info textarea:focus {
+            background-color: white;
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .profile-info input[type="file"] {
+            border: none;
+            padding: 0;
+            margin-top: 10px;
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: clamp(15px, 3vw, 20px);
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 25px);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: clamp(14px, 2.5vw, 16px);
+            transition: background-color 0.3s, transform 0.2s;
+            min-width: 120px;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        #editBtn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        #editBtn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        #saveBtn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #saveBtn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 350px) {
+            .profile-container {
+                padding: 15px;
+                width: 100%;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>My Profile</h1>
+        <div class="profile-info">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture" id="profilePicDisplay">
+            <label for="profilePic">Profile Picture:</label>
+            <input type="file" id="profilePic" accept="image/*" readonly>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" value="" readonly>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" value="" readonly>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" value="" readonly>
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" value="" readonly>
+            
+            <label for="department">Department:</label>
+            <input type="text" id="department" value="" readonly>
+            
+            <label for="college">College:</label>
+            <input type="text" id="college" value="" readonly>
+            
+            <label for="bio">Bio:</label>
+            <textarea id="bio" readonly></textarea>
+        </div>
+        <div class="buttons">
+            <button id="editBtn">Edit</button>
+            <button id="saveBtn" style="display:none;">Save</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('editBtn').addEventListener('click', function() {
+            document.querySelectorAll('.profile-info input, .profile-info textarea').forEach(el => el.removeAttribute('readonly'));
+            document.getElementById('profilePic').removeAttribute('readonly');
+            document.getElementById('editBtn').style.display = 'none';
+            document.getElementById('saveBtn').style.display = 'inline-block';
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            document.querySelectorAll('.profile-info input, .profile-info textarea').forEach(el => el.setAttribute('readonly', 'true'));
+            document.getElementById('profilePic').setAttribute('readonly', 'true');
+            document.getElementById('editBtn').style.display = 'inline-block';
+            document.getElementById('saveBtn').style.display = 'none';
+        });
+
+
+        document.getElementById('profilePic').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePicDisplay').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

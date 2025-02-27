@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-image: url("assets/bg1.jpeg.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(3px);
+            z-index: -1;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .circular-image {
+            width: clamp(80px, 15vw, 100px);
+            height: clamp(80px, 15vw, 100px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            margin-bottom: 15px;
+        }
+
+        #heading {
+            font-size: clamp(18px, 4vw, 24px);
+            padding: 12px 0;
+            color: #333;
+            margin: 0;
+        }
+
+        .image {
+            width: clamp(30px, 8vw, 40px);
+            height: clamp(30px, 8vw, 40px);
+            margin: 0 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .image:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .input-item {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid lightgray;
+            border-radius: 25px;
+            font-size: clamp(14px, 3vw, 16px);
+            padding: 10px 16px;
+            margin: 8px 0;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .input-item::placeholder {
+            color: #aaa;
+            opacity: 1;
+        }
+
+        .input-item:focus {
+            border-color: blue;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 0, 255, 0.5);
+        }
+
+        #reg {
+            background-color: blue;
+            color: white;
+            font-size: clamp(14px, 3vw, 16px);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 16px;
+            width: 100%;
+            max-width: 200px;
+            transition: background-color 0.3s ease;
+        }
+
+        #reg:hover {
+            background-color: darkblue;
+        }
+
+        #bgc {
+            margin-bottom: 24px;
+        }
+
+        .signin-section {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .signin-section button {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid blue;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signin-section button:hover {
+            background: blue;
+        }
+
+        .signin-section button a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        .signin-section button:hover a {
+            color: white;
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            form {
+                padding: 15px;
+            }
+
+            .input-item {
+                padding: 8px 12px;
+            }
+
+            #reg {
+                padding: 10px 20px;
+            }
+        }
+
+        @media screen and (max-height: 600px) {
+            body {
+                padding-top: 40px;
+                padding-bottom: 40px;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form action="process_form.php" method="post">
+        <img class="circular-image" src="assets/Marg_dharshak.jpg" alt="MARG-DHARSHAK" />
+        <h1 id="heading">JOIN MARG-DHARSHAK</h1>
+        <div id="bgc">
+            <a href="https://accounts.google.com/signin" target="_blank">
+                <img class="image" src="https://cdn-icons-png.flaticon.com/128/2702/2702602.png" alt="Google Sign-In" />
+            </a>
+            <a href="https://github.com/login" target="_blank">
+                <img class="image" src="https://cdn-icons-png.flaticon.com/128/2111/2111432.png" alt="GitHub Sign-In" />
+            </a>
+            <a href="https://www.linkedin.com/login" target="_blank">
+                <img class="image" src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="LinkedIn Sign-In" />
+            </a>
+        </div>
+
+        <input class="input-item" type="text" name="Firstname" placeholder="First Name">
+        <input class="input-item" type="text" name="Lastname" placeholder="Last Name">
+        <input class="input-item" type="password" name="password" placeholder="Password">
+        <input class="input-item" type="password" name="confrimpassword" placeholder="Confirm Password">
+        <input class="input-item" type="email" name="email" placeholder="E-mail">
+        <input class="input-item" type="tel" name="Contact" placeholder="Contact">
+        <input id="reg" type="submit" name="register" value="Register" onclick="location.href='/SIH_Login.html';">
+        
+        <div class="signin-section">
+            <label>Marg-dharshak member?</label>
+            <button><a href="SIH_Login.html" type="submit">Sign-In</a></button>
+        </div>
+    </form>
+</body>
+
+</html>

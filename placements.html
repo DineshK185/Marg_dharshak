@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to left, #3A8EA0, #333);
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #52686d, #333);
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar .toggle-btn {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: clamp(24px, 4vw, 30px);
+            cursor: pointer;
+        }
+
+        .navbar .brand {
+            color: #fff;
+            font-size: clamp(20px, 4vw, 28px);
+            margin-left: 10px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .navbar .profile-pic {
+            width: clamp(30px, 5vw, 35px);
+            height: clamp(30px, 5vw, 35px);
+            border-radius: 50%;
+            border: 2px solid #fff;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .sidebar, .profile-sidebar {
+            width: min(80%, 250px);
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            padding-top: 60px;
+            position: fixed;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.3s;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar {
+            left: -250px;
+        }
+
+        .profile-sidebar {
+            right: -250px;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .profile-sidebar.active {
+            right: 0;
+        }
+
+        .sidebar .circular-image, .profile-sidebar .circular-image {
+            width: clamp(70px, 10vw, 90px);
+            height: clamp(70px, 10vw, 90px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .nav-links, .profile-sidebar .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .sidebar .nav-links li, .profile-sidebar .nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar .nav-links a, .profile-sidebar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: clamp(16px, 3vw, 18px);
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar .nav-links a:hover, .profile-sidebar .nav-links a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 100px auto 80px;
+            width: 90%;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            color: #333;
+            width: clamp(280px, calc(33.33% - 20px), 350px);
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2, .card h3 {
+            margin-bottom: 15px;
+            font-size: clamp(18px, 3vw, 24px);
+            color: #52686d;
+        }
+
+        .card p {
+            font-size: clamp(14px, 2vw, 16px);
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .card img {
+            height: clamp(120px, 20vw, 150px);
+            width: clamp(120px, 20vw, 150px);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .foot {
+            background: linear-gradient(to right, #52686d, #333);
+            text-align: center;
+            font-size: clamp(12px, 2vw, 16px);
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 15px;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .cards-container {
+                margin-top: 80px;
+            }
+            
+            .card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .navbar {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
+        <span class="brand">MARG-DHARSHAK</span>
+        <img class="profile-pic" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture" onclick="toggleProfileSidebar()">
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <img class="circular-image" src="assets/Marg_dharshak.jpg" alt="MARG-DHARSHAK"/>
+        <ul class="nav-links">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/home.html">About</a></li>
+            <li><a href="#">Career</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="mailto:bailapudigopisuvarna@gmail.com?">Feedback</a></li>
+        </ul>
+    </div>
+
+    <div class="profile-sidebar" id="profile-sidebar">
+        <img class="circular-image" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture"/>
+        <ul class="nav-links">
+            <li><a href="/profile.html">My Profile</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="/SIH_registration.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="cards-container">
+        <div class="card" onclick="location.href='/coding.html';">
+            <img src="assets/coding.jpg" alt="10">
+            <h2>Coding</h2>
+            <p>Web developer</br>Data Science</br>Cloud Engineer</p>
+        </div>
+        <div class="card" onclick="location.href='/noncoding.html';">
+            <img src="assets/no code.png" alt="11">
+            <h2>Non Coding</h2>
+            <p>Graphic Design</br>Network Security</br>Project Management</p>
+        </div>
+        <div class="card" onclick="location.href='#';">
+            <img src="assets/core.png" alt="grad">
+            <h3>Core</h3>
+            <p>VLSA</br>Embedded Systems</br>Automotive Engineering</p>
+        </div>
+    </div>
+
+    <footer class="foot">
+        &copy; Copyright 2024 www.margdharshak.com. All rights reserved. Developed by Tech Titans
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+        }
+
+        function toggleProfileSidebar() {
+            var profileSidebar = document.getElementById("profile-sidebar");
+            profileSidebar.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
